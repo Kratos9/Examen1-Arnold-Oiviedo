@@ -9,11 +9,11 @@ export default function Layout() {
                     let iconName;
 
                     if (route.name === "index") {
-                        iconName = focused ? "home" : "home-outline"
-                    } else if (route.name === "profile") {
-                        iconName = focused ? "person" : "person-outline"
-                    } else if (route.name === "settings") {
-                        iconName = focused ? "settings" : "settings-outline"
+                        iconName = focused ? "inicio" : "home-outline"
+                    } else if (route.name === "inicio") {
+                        iconName = focused ? "reader" : "reader-outline"
+                    } else if (route.name === "añadirtarea") {
+                        iconName = focused ? "receipt" : "receipt-outline"
                     }
                     return <Ionicons name={iconName} size={size} color={color} />
                 },

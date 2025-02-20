@@ -22,7 +22,7 @@ export default function LoginScreen(){
             <Text style={styles.buttonText}>Iniciar seseion</Text>
 
             <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
-            <TouchableOpacity style={styles.button} onPress={()=> {login(email); router.replace('/home')}}>
+            <TouchableOpacity style={styles.button} onPress={()=> {login(email); router.replace('/inicio')}}>
             <Text style={styles.buttonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
           

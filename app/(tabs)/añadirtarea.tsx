@@ -4,7 +4,7 @@ import { router, useRouter } from "expo-router";
 import { View, Text, Button, StyleSheet, Image } from "react-native";
 
 
-export default function AñadirTarea(){
+export default function SettingsScreen(){
     const {user} = useAuth ();
                                                                                    
     const router = useRouter();

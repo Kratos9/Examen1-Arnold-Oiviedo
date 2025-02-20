@@ -16,7 +16,7 @@ const router = useRouter();
 return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Ionicons name="cube-outline" size={32} color="#2D2E32" />
+        <Ionicons name="reader-outline" size={32} color="#2D2E32" />
         <Text style={styles.title}>Tareas</Text>
       </View>
       <FlatList
@@ -26,11 +26,11 @@ return (
           <TouchableOpacity style={styles.item}
           onPress={() => router.push({ pathname: `/tareas/${item.id}`, params: item })}>
             <View style={styles.itemHeader}>
-              <Ionicons name="pricetag-outline" size={24} color="#4A90E2" />
+              <Ionicons name="newspaper-outline" size={24} color="#4A90E2" />
               <Text style={styles.itemTitle}>{item.titulo}</Text>
             </View>
             <View style={styles.infoRow}>
-              <Ionicons name="albums-outline" size={20} color="#666" />
+              <Ionicons name="reorder-four-outline" size={20} color="#666" />
               <Text style={styles.itemCategory}>{item.descripcion}</Text>
             </View>
             

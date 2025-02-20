@@ -26,20 +26,7 @@ export default function HomeScreen(){
 
          <View style={styles.innerContainer}>
 
-         <TouchableOpacity style={styles.button}  onPress={()=> {router.push('/(tabs)/inicio')}}>
-         <Ionicons name="folder-open-outline" size={28} color="white" />
-          <Text style={styles.buttonText}>Mostrar Tarea</Text>
-        </TouchableOpacity>
-
-         <TouchableOpacity style={styles.button}  >
-         <Ionicons name="folder-outline" size={28} color="white" />
-          <Text style={styles.buttonText}>Añadir Tarea</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.buttonLogout} onPress={()=> {logout(); router.replace('/login')}} >
-        <Ionicons name="exit" size={28} color="white" />
-          <Text style={styles.buttonText}>Cerrar Sesion</Text>
-        </TouchableOpacity>
+        
 
         </View>
      </View>
