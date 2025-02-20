@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'hsla(212, 66.70%, 18.80%, 0.84)',
+      backgroundColor: 'hsla(0, 0.00%, 98.80%, 0.84)',
     },
     innerContainer: {
       width: '90%',

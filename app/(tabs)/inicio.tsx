@@ -27,11 +27,11 @@ return (
           onPress={() => router.push({ pathname: `/tareas/${item.id}`, params: item })}>
             <View style={styles.itemHeader}>
               <Ionicons name="newspaper-outline" size={24} color="#4A90E2" />
-              <Text style={styles.itemTitle}>{item.titulo}</Text>
+              <Text style={styles.itemTitle}>Titulo: {item.titulo}</Text>
             </View>
             <View style={styles.infoRow}>
               <Ionicons name="reorder-four-outline" size={20} color="#666" />
-              <Text style={styles.itemCategory}>{item.descripcion}</Text>
+              <Text style={styles.itemCategory}>Descripcion: {item.descripcion}</Text>
             </View>
             
           </TouchableOpacity>

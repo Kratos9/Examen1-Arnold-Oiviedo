@@ -1,40 +1,79 @@
 
 import { useAuth } from "@/contex/AuthContex";
 import { router, useRouter } from "expo-router";
-import { View, Text, Button, StyleSheet, Image } from "react-native";
+import { useState } from "react";
+import { View, Text, Button, StyleSheet, Image, TextInput } from "react-native";
 
 
 export default function SettingsScreen(){
-    const {user} = useAuth ();
-                                                                                   
+    
+    const [titulo, setTitle] = useState('');
+    const [description, setDescription] = useState('');   
+
+    // Context para añadir tareas
+  const { tasks, setTasks } = useAuth();
     const router = useRouter();
-    return (
-        <View style={styles.container}>
-               
-            <Text style= {styles.text}>Upcoming Features</Text>
-            <Button title="Volver" onPress={()=>{router.back() }}>
-                
-            </Button>
-        </View>
-    )
-}
+
+      // Función para manejar la creación de una nueva tarea
+  const handleAddTask = () => {
+    if (titulo && description) {
+      const newTask = {
+        id: tasks.length + 1,
+        titulo,
+        description,
+      };
+
+      // Actualizamos la lista de tareas
+      setTasks([...tasks, newTask]);
+
+      // Limpiamos los campos del formulario
+      setTitle('');
+      setDescription('');
+
+      // Redirigimos a la pantalla de inicio
+      router.replace('/inicio')
+    } else {
+      alert('Por favor, complete todos los campos.');
+    }
+  };
+  return (
+    <View style={styles.container}>
+      <Text style={styles.header}>Añadir Tarea</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Título de la tarea"
+        value={titulo}
+        onChangeText={setTitle}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Descripción de la tarea"
+        value={description}
+        onChangeText={setDescription}
+        multiline
+      />
+      <Button title="Añadir Tarea" onPress={handleAddTask} />
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#fff',
-      },
-    logo: {
-      width: 150,
-      height: 150,
-      marginBottom: 30,
-      borderRadius: 40,
-    },
-    text: {
-        fontSize: 18,
-        color: '#000',
-        marginLeft: 5,
-      },
-  });
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 20,
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+  },
+});

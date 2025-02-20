@@ -25,7 +25,10 @@ export default function HomeScreen(){
     
 
          <View style={styles.innerContainer}>
-
+         <TouchableOpacity style={styles.buttonLogout}  onPress={()=> {logout(); router.replace('/login')}}>
+        <Ionicons name="exit" size={28} color="white" />
+          <Text style={styles.buttonText}>Cerrar Sesion</Text>
+        </TouchableOpacity>
         
 
         </View>

@@ -5,7 +5,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
 
-export default function ArticuloScreen(){
+export default function TaskScreen(){
     const router = useRouter();
     const {id, titulo, descripcion} = useLocalSearchParams ();
 
@@ -15,7 +15,7 @@ export default function ArticuloScreen(){
     
           <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
             <Ionicons name="arrow-back-outline" size={24} color="white" />
-            <Text style={styles.backButtonText}>Volver al Inventario</Text>
+            <Text style={styles.backButtonText}>Volver a Tareas</Text>
           </TouchableOpacity>
         </View>
       );

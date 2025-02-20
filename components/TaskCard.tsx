@@ -13,13 +13,13 @@ export default function TaskCard({ titulo, descripcion, }: ArticuloProps) {
 
             <View style={styles.container}>
                 <View style={styles.header}>
-                    <Ionicons name="cube-outline" size={28} color="#4A90E2" />
-                    <Text style={styles.title}>{titulo}</Text>
+                    <Ionicons name="reader-outline" size={28} color="#4A90E2" />
+                    <Text style={styles.title}>Titulo: {titulo}</Text>
                 </View>
 
                 <View style={styles.infoRows}>
                     <Ionicons name="albums-outline" size={20} color="#666" />
-                    <Text style={styles.text}>Categoria: {descripcion}</Text>
+                    <Text style={styles.text}>Descripcion: {descripcion}</Text>
                 </View>
             </View>
         </View>
