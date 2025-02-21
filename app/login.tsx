@@ -1,5 +1,6 @@
 
 import { useAuth } from "@/contex/AuthContex";
+import { Ionicons } from "@expo/vector-icons";
 import {  useRouter } from "expo-router";
 import { useState,  } from "react";
 import { StyleSheet, View, Text, TextInput, Button, Image, TouchableOpacity } from "react-native"
@@ -21,15 +22,14 @@ export default function LoginScreen(){
             <Text style={styles.buttonText}>Usuario actual {email || 'Ninguno'}</Text>
             <Text style={styles.buttonText}>Iniciar seseion</Text>
 
+          
+
             <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
-            <TouchableOpacity style={styles.button} onPress={()=> {login(email); router.replace('/inicio')}}>
+            <TouchableOpacity style={styles.button} onPress={()=> {login(email); router.replace('/home')}}>
             <Text style={styles.buttonText}>Iniciar Sesión</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={styles.registerText}>
-            <Text style={styles.registerText}>¿No tienes cuenta? Regístrate</Text>
-          </TouchableOpacity>
-            
+        
         </View>
        </View>
     )
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
       width: '90%',
       maxWidth: 350,
       padding: 20,
-      backgroundColor: 'rgba(255, 255, 255, 0.1)', // Fondo blanco del formulario
+      backgroundColor: 'rgba(255, 255, 255, 0.84)', // Fondo blanco del formulario
       borderRadius: 15,
       color:'#fff',
       shadowColor: '#000', 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
       marginBottom: 20,
       paddingLeft: 10,
       fontSize: 16,
-      color:'#fff',
+      color:'#333',
     },
     button: {
       width: '100%',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     buttonText: {
-      color: '#fff',
+      color: '#333',
       fontSize: 20,
       fontWeight: 'bold',
       textAlign:'center',  

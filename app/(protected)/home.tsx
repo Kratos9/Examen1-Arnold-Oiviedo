@@ -15,16 +15,22 @@ export default function HomeScreen(){
         
         <View style={styles.outerContainer}>
             < Image 
-         source={require ("../../assets/images/home.jpg")}
+         source={require ("../../assets/images/mostrartarea.png")}
          style={styles.logo}
          />
            <View style={styles.header}>
                 <Text style={styles.text}>¡Hola, {user?.email || 'Desconocido'}!</Text>
-                <Text style={styles.email}>Bienvenido a tu panel de control</Text>
+                <Text style={styles.email}>Bienvenido a tu control de tareas</Text>
             </View>
     
-
+ 
          <View style={styles.innerContainer}>
+
+         <TouchableOpacity style={styles.button}  onPress={()=> {router.push('/(tabs)/inicio')}}>
+         <Ionicons name="albums-outline" size={28} color="white" />
+          <Text style={styles.buttonText}>Mostrar Tareas</Text>
+        </TouchableOpacity>
+
          <TouchableOpacity style={styles.buttonLogout}  onPress={()=> {logout(); router.replace('/login')}}>
         <Ionicons name="exit" size={28} color="white" />
           <Text style={styles.buttonText}>Cerrar Sesion</Text>
@@ -42,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-       
+       backgroundColor: '#fff',
       },
       innerContainer: {
         width: '100%',
@@ -62,10 +68,11 @@ const styles = StyleSheet.create({
       height: 150,
       marginBottom: 30,
       borderRadius: 40,
+      
     },
     button: {
       width: '100%',
-      backgroundColor: '#007BFF',
+      backgroundColor: '#666',
       padding: 15,
       marginBottom: 15,
       borderRadius: 10,
