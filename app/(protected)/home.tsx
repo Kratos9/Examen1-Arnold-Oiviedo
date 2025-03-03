@@ -20,7 +20,7 @@ export default function HomeScreen(){
          />
            <View style={styles.header}>
                 <Text style={styles.text}>¡Hola, {user?.email || 'Desconocido'}!</Text>
-                <Text style={styles.email}>Bienvenido a tu control de tareas</Text>
+                <Text style={styles.email}>Bienvenido a panel control</Text>
             </View>
     
  
@@ -28,7 +28,12 @@ export default function HomeScreen(){
 
          <TouchableOpacity style={styles.button}  onPress={()=> {router.push('/(tabs)/inicio')}}>
          <Ionicons name="albums-outline" size={28} color="white" />
-          <Text style={styles.buttonText}>Mostrar Tareas</Text>
+          <Text style={styles.buttonText}>Mostrar Anuncios</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button}  onPress={()=> {router.push('/(tabs)/añadirtarea')}}>
+         <Ionicons name="albums-outline" size={28} color="white" />
+          <Text style={styles.buttonText}>Gestionar Anuncio</Text>
         </TouchableOpacity>
 
          <TouchableOpacity style={styles.buttonLogout}  onPress={()=> {logout(); router.replace('/login')}}>

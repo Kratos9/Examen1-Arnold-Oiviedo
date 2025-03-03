@@ -23,4 +23,5 @@ export default function Index(){
             <Text>Usuario: {user ? user.email : 'No autenticado'}</Text>
         </View>
     );
+    
 }

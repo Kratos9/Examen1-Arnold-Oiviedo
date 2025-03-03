@@ -2,24 +2,43 @@ import { Ionicons } from "@expo/vector-icons";
 import { View, Text, StyleSheet } from "react-native";
 
 type ArticuloProps = {
-    titulo: string;
-    descripcion: string;
+    anuncio: string;
+    persona: string;
+    motivo: string;
+    dni: string;
+    vehiculo: string;
     
 };
 
-export default function TaskCard({ titulo, descripcion, }: ArticuloProps) {
+export default function TaskCard({ anuncio, persona, motivo, dni, vehiculo }: ArticuloProps) {
     return (
         <View style={styles.wrapper}>
 
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Ionicons name="reader-outline" size={28} color="#4A90E2" />
-                    <Text style={styles.title}>Titulo: {titulo}</Text>
+                    <Text style={styles.title}>Tipo de anuncio: {anuncio}</Text>
+                </View>
+
+
+                <View style={styles.header}>
+                    <Ionicons name="reader-outline" size={28} color="#4A90E2" />
+                    <Text style={styles.title}>Persona: {persona}</Text>
+                </View>
+
+                <View style={styles.header}>
+                    <Ionicons name="reader-outline" size={28} color="#4A90E2" />
+                    <Text style={styles.title}>Motivo: {motivo}</Text>
+                </View>
+
+                <View style={styles.header}>
+                    <Ionicons name="reader-outline" size={28} color="#4A90E2" />
+                    <Text style={styles.title}>DNI: {dni}</Text>
                 </View>
 
                 <View style={styles.infoRows}>
                     <Ionicons name="albums-outline" size={20} color="#666" />
-                    <Text style={styles.text}>Descripcion: {descripcion}</Text>
+                    <Text style={styles.text}>Tipo de vehiculo: {vehiculo}</Text>
                 </View>
             </View>
         </View>
@@ -33,10 +52,10 @@ export default function TaskCard({ titulo, descripcion, }: ArticuloProps) {
     },
     container: {
         flex: 1,
-        width: "90%",
-        justifyContent: "center",
+        width: "60%",
+        justifyContent: "flex-start",
         backgroundColor: "white",
-        padding: 20,
+        padding: 40,
         borderRadius: 12,
         shadowColor: "#000",
         shadowOpacity: 0.1,
