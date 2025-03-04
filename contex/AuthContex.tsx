@@ -26,7 +26,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   
 
     const login = (email: string) =>{
-        const isValidEmail = email.endsWith('@gmail.com');
+        const isValidEmail = email.endsWith('@seguridad.corp');
 
         if (isValidEmail){
             setUser({email})
@@ -34,7 +34,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         }else{
             setUser(null);
             setIsAllowed(false);
-            alert("Solo correos @gmail.com pueden ingresar")
+            alert("Solo correos @seguridad.corp pueden ingresar")
         }
     };
 

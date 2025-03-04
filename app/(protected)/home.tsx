@@ -1,5 +1,7 @@
 
 import { useAuth } from "@/contex/AuthContex";
+import { useTheme } from "@/contex/ThemeContext";
+import { darkTheme, lightTheme } from "@/styles/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity, Image } from "react-native"
@@ -8,18 +10,22 @@ import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity, Image } fr
 export default function HomeScreen(){
     const router = useRouter ();
     const {user, logout} = useAuth();
-
+    const {theme} = useTheme();
+    const themeStyles = theme === "dark" ? darkTheme : lightTheme;
 
     return (
         
         
-        <View style={styles.outerContainer}>
+        <View style={[themeStyles.addcontainer,styles.outerContainer]}>
+         
+            
+         
             < Image 
-         source={require ("../../assets/images/mostrartarea.png")}
+         source={require ("../../assets/images/panel2.png")}
          style={styles.logo}
          />
            <View style={styles.header}>
-                <Text style={styles.text}>¡Hola, {user?.email || 'Desconocido'}!</Text>
+                <Text style={[themeStyles.title]}>¡Hola, {user?.email || 'Desconocido'}!</Text>
                 <Text style={styles.email}>Bienvenido a panel control</Text>
             </View>
     
@@ -28,12 +34,7 @@ export default function HomeScreen(){
 
          <TouchableOpacity style={styles.button}  onPress={()=> {router.push('/(tabs)/inicio')}}>
          <Ionicons name="albums-outline" size={28} color="white" />
-          <Text style={styles.buttonText}>Mostrar Anuncios</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button}  onPress={()=> {router.push('/(tabs)/añadirtarea')}}>
-         <Ionicons name="albums-outline" size={28} color="white" />
-          <Text style={styles.buttonText}>Gestionar Anuncio</Text>
+          <Text style={styles.buttonText}>Panel de control</Text>
         </TouchableOpacity>
 
          <TouchableOpacity style={styles.buttonLogout}  onPress={()=> {logout(); router.replace('/login')}}>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-       backgroundColor: '#fff',
+       
       },
       innerContainer: {
         width: '100%',
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
       width: 150,
       height: 150,
       marginBottom: 30,
-      borderRadius: 40,
+     borderRadius: 60,
       
     },
     button: {
@@ -112,5 +113,7 @@ const styles = StyleSheet.create({
     header: {
       alignItems:'center',
       marginBottom:20,
+      fontSize: 18,
+      fontWeight: 'bold',
     }
   });

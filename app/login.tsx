@@ -1,5 +1,7 @@
 
 import { useAuth } from "@/contex/AuthContex";
+import { useTheme } from "@/contex/ThemeContext";
+import { darkTheme, lightTheme } from "@/styles/themes";
 import { Ionicons } from "@expo/vector-icons";
 import {  useRouter } from "expo-router";
 import { useState,  } from "react";
@@ -10,28 +12,33 @@ export default function LoginScreen(){
     const [email, setEmail] = useState ('')
     const router = useRouter ();
     const {login} = useAuth();
+      const {theme} = useTheme();
+          const themeStyles = theme === "dark" ? darkTheme : lightTheme;
 
 
     return (
-       <View style= {styles.outerContainer}>
-         <View style={styles.innerContainer}>
-         < Image 
-         source={require ("../assets/images/login.jpg")}
-         style={styles.logo}
-         />
-            <Text style={styles.buttonText}>Usuario actual {email || 'Ninguno'}</Text>
-            <Text style={styles.buttonText}>Iniciar seseion</Text>
+      <View style={[themeStyles.addcontainer, styles.outerContainer]}>
 
-          
-
-            <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
-            <TouchableOpacity style={styles.button} onPress={()=> {login(email); router.replace('/home')}}>
-            <Text style={styles.buttonText}>Iniciar Sesión</Text>
-          </TouchableOpacity>
-          
-        
-        </View>
-       </View>
+        <View style={[themeStyles.addcontainer, styles.innerContainer]}>
+        <Text style={[themeStyles.title]}>PROTEGO SECURITY</Text>
+        <Image 
+          source={require("../assets/images/protego3.png")}
+          style={styles.logo}
+        />
+        <Text style={[themeStyles.text, styles.buttonText]}>Usuario actual {email || 'Ninguno'}</Text>
+        <Text style={[themeStyles.text, styles.buttonText]}>Iniciar Sesión</Text>
+  
+        <TextInput 
+          style={[themeStyles.text, styles.input]} 
+          placeholder="Email" 
+          value={email} 
+          onChangeText={setEmail} 
+        />
+        <TouchableOpacity style={styles.button} onPress={() => { login(email); router.replace('/home') }}>
+          <Text style={[themeStyles.text, styles.buttonText]}>Iniciar Sesión</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
     )
 }
 
@@ -40,27 +47,36 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'hsla(0, 0.00%, 98.80%, 0.84)',
+      //backgroundColor: 'hsla(0, 0.00%, 98.80%, 0.84)',
     },
     innerContainer: {
-      width: '90%',
-      maxWidth: 350,
-      padding: 20,
-      backgroundColor: 'rgba(255, 255, 255, 0.84)', // Fondo blanco del formulario
-      borderRadius: 15,
-      color:'#fff',
-      shadowColor: '#000', 
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.8,
-      shadowRadius: 4,
-      elevation: 5, // Para sombra en dispositivos Android
+   //   backgroundColor: 'rgba(255, 255, 255, 0.84)', // Fondo blanco del formulario
+   width: '90%',
+   maxWidth: 350,
+   padding: 20,
+   borderRadius: 15,
+   shadowColor: '#000', 
+   shadowOffset: { width: 0, height: 2 },
+   shadowOpacity: 0.8,
+   shadowRadius: 10,
+   elevation: 50,
+    },
+    headerContainer: {
+      alignItems: 'center', // Centra el contenido horizontalmente
+      marginBottom: 20, // Espaciado entre el logo y el formulario
     },
     logo: {
       width: 150,
       height: 150,
-      borderRadius: 75,
-      marginBottom: 40,
+      resizeMode: 'contain',
       alignSelf: 'center',
+      
+    },
+    logo2: {
+      width: 150,
+      height: 150,
+      resizeMode: 'contain',
+      alignSelf: 'center', // Centra la imagen en su contenedor
       
     },
     input: {
@@ -72,7 +88,7 @@ const styles = StyleSheet.create({
       marginBottom: 20,
       paddingLeft: 10,
       fontSize: 16,
-      color:'#333',
+      //color:'#333',
     },
     button: {
       width: '100%',
@@ -82,7 +98,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     buttonText: {
-      color: '#333',
+      //color: '#333',
       fontSize: 20,
       fontWeight: 'bold',
       textAlign:'center',  

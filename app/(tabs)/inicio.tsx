@@ -1,4 +1,6 @@
 import { useTask } from "@/contex/TaskContex";
+import { useTheme } from "@/contex/ThemeContext";
+import { darkTheme, lightTheme } from "@/styles/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { FlatList, TouchableOpacity, View, Text, StyleSheet } from "react-native";
@@ -6,9 +8,11 @@ import { FlatList, TouchableOpacity, View, Text, StyleSheet } from "react-native
 export default function Inicio() {
   const { tasks } = useTask();
   const router = useRouter();
+  const {theme} = useTheme();
+      const themeStyles = theme === "dark" ? darkTheme : lightTheme;
 
   return (
-    <View style={styles.container}>
+    <View style={[themeStyles.addcontainer,styles.container]}>
       {/* Botón de volver */}
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
         <Ionicons name="arrow-back-outline" size={24} color="white" />
@@ -18,7 +22,7 @@ export default function Inicio() {
       {/* Encabezado */}
       <View style={styles.header}>
         <Ionicons name="reader-outline" size={32} color="#4A90E2" />
-        <Text style={styles.title}>Anuncios</Text>
+        <Text style={[themeStyles.text,styles.title]}>Anuncios</Text>
       </View>
 
       {/* Lista de anuncios (solo título) */}
@@ -43,7 +47,6 @@ export default function Inicio() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F7FA",
     paddingHorizontal: 16,
     paddingTop: 20,
   },
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: "bold",
-    color: "#2D2E32",
+    
     marginLeft: 10,
   },
   item: {

@@ -12,9 +12,11 @@ export default function Layout() {
                         iconName = focused ? "inicio" : "home-outline"
                     } else if (route.name === "inicio") {
                         iconName = focused ? "reader" : "reader-outline"
-                    } else if (route.name === "añadirtarea") {
+                    }else if (route.name === "añadirtarea") {
                         iconName = focused ? "receipt" : "receipt-outline"
-                    }
+                    }else if (route.name === "settings") {
+                        iconName = focused ? "contrast" : "contrast-outline"
+                    } 
                     return <Ionicons name={iconName} size={size} color={color} />
                 },
                 tabBarActiveTintColor: "blue",

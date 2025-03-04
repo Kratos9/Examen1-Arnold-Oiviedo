@@ -1,13 +1,17 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/contex/ThemeContext";
+import { darkTheme, lightTheme } from "@/styles/themes";
 
 export default function TaskDetail() {
   const router = useRouter();
   const params = useLocalSearchParams();
+  const { theme } = useTheme();
+  const themeStyles = theme === "dark" ? darkTheme : lightTheme;
 
   return (
-    <View style={styles.container}>
+    <View style={[themeStyles.addcontainer, styles.container]}>
       {/* Botón de volver */}
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
         <Ionicons name="arrow-back-outline" size={24} color="white" />
@@ -15,20 +19,30 @@ export default function TaskDetail() {
       </TouchableOpacity>
 
       {/* Detalles del anuncio */}
-      <Text style={styles.title}>{params.anuncio}</Text>
-      <Text style={styles.detail}><Text style={styles.bold}>Persona:</Text> {params.persona}</Text>
-      <Text style={styles.detail}><Text style={styles.bold}>Motivo:</Text> {params.motivo}</Text>
-      <Text style={styles.detail}><Text style={styles.bold}>DNI:</Text> {params.dni}</Text>
-      <Text style={styles.detail}><Text style={styles.bold}>Vehículo:</Text> {params.vehiculo}</Text>
+      <Text style={[themeStyles.text, styles.title]}>{params.anuncio}</Text>
+      <Text style={[themeStyles.text, styles.detail]}>
+        <Text style={styles.bold}>Persona:</Text> {params.persona}
+      </Text>
+      <Text style={[themeStyles.text, styles.detail]}>
+        <Text style={styles.bold}>Motivo:</Text> {params.motivo}
+      </Text>
+      <Text style={[themeStyles.text, styles.detail]}>
+        <Text style={styles.bold}>DNI:</Text> {params.dni}
+      </Text>
+      <Text style={[themeStyles.text, styles.detail]}>
+        <Text style={styles.bold}>Vehículo:</Text> {params.vehiculo}
+      </Text>
+
+      {/* 📸 Mostrar imagen si existe */}
+      {params.imagen && <Image source={{ uri: params.imagen }} style={styles.image} />}
     </View>
   );
 }
 
-// 🎨 Estilos
+// 🎨 Estilos actualizados
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F7FA",
     padding: 20,
   },
   backButton: {
@@ -50,17 +64,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#2D2E32",
     marginBottom: 20,
   },
   detail: {
     fontSize: 18,
-    color: "#333",
     marginBottom: 10,
   },
   bold: {
     fontWeight: "bold",
   },
+  image: {
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    marginTop: 20,
+  },
 });
-
-

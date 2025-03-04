@@ -5,10 +5,14 @@ import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Alert, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import * as ImagePicker from "expo-image-picker"; // 📸 Importar el selector de imágenes
+import { useTheme } from "@/contex/ThemeContext";
+import { darkTheme, lightTheme } from "@/styles/themes";
 
 export default function SettingsScreen() {
   const { addTask } = useTask();
   const router = useRouter();
+  const {theme} = useTheme();
+        const themeStyles = theme === "dark" ? darkTheme : lightTheme;
 
   // Estado del dropdown
   const [open, setOpen] = useState(false);
@@ -97,20 +101,20 @@ export default function SettingsScreen() {
   return (
 
     <ScrollView contentContainerStyle={{ flexGrow: 1 }} keyboardShouldPersistTaps="handled">
-    <View style={styles.container}>
+    <View style={[themeStyles.addcontainer,styles.container]}>
       <TouchableOpacity style={styles.backButton} onPress={() => router.push("/home")}>
         <Ionicons name="arrow-back-outline" size={24} color="white" />
         <Text style={styles.backButtonText}>Volver</Text>
       </TouchableOpacity>
 
-      <Text style={styles.header}>
+      <Text style={[themeStyles.title,styles.header]}>
         Gestionar Anuncio{" "}
         <Image source={require("../../assets/images/añadirtarea.png")} style={styles.logo} />
       </Text>
 
       {/* Dropdown de Tipo de Anuncio */}
-      <View style={styles.dropdownContainer}>
-        <Text style={styles.label}>Tipo de Anuncio:</Text>
+      <View style={[styles.dropdownContainer]}>
+        <Text style={[themeStyles.text,styles.label]}>Tipo de Anuncio:</Text>
         <DropDownPicker
           open={open}
           value={anuncio}
@@ -119,27 +123,27 @@ export default function SettingsScreen() {
           setValue={setAnuncio}
           setItems={setItems}
           placeholder="Selecciona un tipo de anuncio"
-          style={styles.dropdown}
-          dropDownContainerStyle={styles.dropdownList}
+          style={[themeStyles.dropdown]}
+          dropDownContainerStyle={[themeStyles.dropdownList]}
         />
       </View>
 
       <TextInput
-        style={styles.input}
+        style={[themeStyles.text,styles.input]}
         placeholder="Nombre de la persona"
         placeholderTextColor="#888"
         value={persona}
         onChangeText={setPersona}
       />
       <TextInput
-        style={styles.input}
+        style={[themeStyles.text,styles.input]}
         placeholder="Motivo de la visita"
         placeholderTextColor="#888"
         value={motivo}
         onChangeText={setMotivo}
       />
       <TextInput
-        style={styles.input}
+        style={[themeStyles.text,styles.input]}
         placeholder="Identidad (DNI)"
         placeholderTextColor="#888"
         value={dni}
@@ -147,7 +151,7 @@ export default function SettingsScreen() {
         keyboardType="numeric"
       />
       <TextInput
-        style={styles.input}
+        style={[themeStyles.text,styles.input]}
         placeholder="Tipo de vehículo"
         placeholderTextColor="#888"
         value={vehiculo}
@@ -188,7 +192,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#fff",
+    
   },
   header: {
     fontSize: 24,
@@ -213,7 +217,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginBottom: 5,
-    color: "#333",
+    textAlign:'left'
   },
   input: {
     width: "100%",
@@ -224,7 +228,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingLeft: 10,
     fontSize: 16,
-    color: "#000",
+    
   },
   imageButton: {
     flexDirection: "row",
