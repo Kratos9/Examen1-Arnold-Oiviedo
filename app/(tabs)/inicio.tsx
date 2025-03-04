@@ -43,7 +43,7 @@ export default function Inicio() {
   );
 }
 
-// 🎨 Estilos mejorados
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

@@ -33,13 +33,13 @@ export default function TaskDetail() {
         <Text style={styles.bold}>Vehículo:</Text> {params.vehiculo}
       </Text>
 
-      {/* 📸 Mostrar imagen si existe */}
+      {/* Mostrar imagen si existe */}
       {params.imagen && <Image source={{ uri: params.imagen }} style={styles.image} />}
     </View>
   );
 }
 
-// 🎨 Estilos actualizados
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

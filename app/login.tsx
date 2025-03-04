@@ -62,8 +62,8 @@ const styles = StyleSheet.create({
    elevation: 50,
     },
     headerContainer: {
-      alignItems: 'center', // Centra el contenido horizontalmente
-      marginBottom: 20, // Espaciado entre el logo y el formulario
+      alignItems: 'center', 
+      marginBottom: 20, 
     },
     logo: {
       width: 150,

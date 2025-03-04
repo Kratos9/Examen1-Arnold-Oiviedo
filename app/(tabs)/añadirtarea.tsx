@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Alert, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import * as ImagePicker from "expo-image-picker"; // 📸 Importar el selector de imágenes
+import * as ImagePicker from "expo-image-picker"; // Importar el selector de imágenes
 import { useTheme } from "@/contex/ThemeContext";
 import { darkTheme, lightTheme } from "@/styles/themes";
 
@@ -27,9 +27,9 @@ export default function SettingsScreen() {
   const [motivo, setMotivo] = useState("");
   const [dni, setDni] = useState("");
   const [vehiculo, setVehiculo] = useState("");
-  const [imagen, setImagen] = useState<string | null>(null); // 📸 Estado para la imagen
+  const [imagen, setImagen] = useState<string | null>(null); // Estado para la imagen
 
-  // 📸 Función para seleccionar una imagen
+  // Función para seleccionar una imagen
   const seleccionarImagen = async () => {
     let permiso = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!permiso.granted) {
@@ -45,10 +45,10 @@ export default function SettingsScreen() {
     });
 
     if (!resultado.canceled) {
-      setImagen(resultado.assets[0].uri); // 📸 Guarda la imagen seleccionada
+      setImagen(resultado.assets[0].uri); // Guarda la imagen seleccionada
     }
   };
-   // 📷 Función para tomar una foto con la cámara
+   //  Función para tomar una foto con la cámara
    const tomarFoto = async () => {
     let permiso = await ImagePicker.requestCameraPermissionsAsync();
     if (!permiso.granted) {
@@ -63,7 +63,7 @@ export default function SettingsScreen() {
     });
 
     if (!resultado.canceled) {
-      setImagen(resultado.assets[0].uri); // 📸 Guardar la foto tomada
+      setImagen(resultado.assets[0].uri); //  Guardar la foto tomada
     }
   };
 
@@ -76,7 +76,7 @@ export default function SettingsScreen() {
         motivo,
         dni,
         vehiculo,
-        imagen, // 📸 Guardar la imagen en la tarea
+        imagen, //  Guardar la imagen en la tarea
       };
       addTask(newTask);
 
@@ -158,20 +158,20 @@ export default function SettingsScreen() {
         onChangeText={setVehiculo}
       />
 
-      {/* 📸 Botón para seleccionar imagen */}
+      {/* Botón para seleccionar imagen */}
       <TouchableOpacity style={styles.imageButton} onPress={seleccionarImagen}>
         <Ionicons name="image-outline" size={24} color="white" />
         <Text style={styles.imageButtonText}>Seleccionar Imagen</Text>
       </TouchableOpacity>
 
-         {/* 📷 Botón para tomar foto */}
+         {/*  Botón para tomar foto */}
          <TouchableOpacity style={styles.cameraButton} onPress={tomarFoto}>
         <Ionicons name="camera-outline" size={24} color="white" />
         <Text style={styles.imageButtonText}>Tomar Foto</Text>
       </TouchableOpacity>
 
 
-      {/* 📸 Mostrar imagen seleccionada */}
+      {/* Mostrar imagen seleccionada */}
       {imagen && <Image source={{ uri: imagen }} style={styles.imagePreview} />}
 
       <TouchableOpacity style={styles.addButton} onPress={handleAddTask}>
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
   },
   dropdownContainer: {
     marginBottom: 20,
-    zIndex: 1000, // Asegura que el dropdown no se superponga mal con otros elementos
+    zIndex: 1000, 
   },
   dropdown: {
     backgroundColor: "#F5F5F5",
