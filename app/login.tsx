@@ -37,6 +37,11 @@ export default function LoginScreen(){
         <TouchableOpacity style={styles.button} onPress={() => { login(email); router.replace('/home') }}>
           <Text style={[themeStyles.text, styles.buttonText]}>Iniciar Sesión</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => router.push("/register")}>
+        <Text style={styles.linkText}>¿No tienes cuenta? Regístrate</Text>
+      </TouchableOpacity>
+
       </View>
     </View>
     )
@@ -109,4 +114,5 @@ const styles = StyleSheet.create({
       fontSize: 16,
       textAlign: 'center',
     },
+    linkText: { marginTop: 10, color: "#007bff", textDecorationLine: "underline", alignSelf: 'center' },
   });

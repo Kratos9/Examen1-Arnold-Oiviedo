@@ -7,9 +7,14 @@ import DropDownPicker from "react-native-dropdown-picker";
 import * as ImagePicker from "expo-image-picker"; // Importar el selector de imágenes
 import { useTheme } from "@/contex/ThemeContext";
 import { darkTheme, lightTheme } from "@/styles/themes";
+import { useDispatch } from 'react-redux';
+import { AddAnuncioItem } from "@/store/slices/anuncioSlice";
+
+
 
 export default function SettingsScreen() {
-  const { addTask } = useTask();
+  const dispatch = useDispatch();
+
   const router = useRouter();
   const {theme} = useTheme();
         const themeStyles = theme === "dark" ? darkTheme : lightTheme;
@@ -69,24 +74,25 @@ export default function SettingsScreen() {
 
   const handleAddTask = () => {
     if (anuncio && persona && motivo && dni && vehiculo) {
-      const newTask = {
+      const newAnuncio = {
         id: Date.now(),
         anuncio,
         persona,
         motivo,
         dni,
         vehiculo,
-        imagen, //  Guardar la imagen en la tarea
+        imagen,
       };
-      addTask(newTask);
-
+  
+      dispatch(AddAnuncioItem(newAnuncio)); // Despachar al store de Redux
+  
       Alert.alert(
         "Éxito",
         "Anuncio creado exitosamente ✅",
-        [{ text: "OK", onPress: () => router.replace("/inicio") }]
+        [{ text: "OK", onPress: () => router.push("/inicio") }]
       );
-
-      // Limpiar los campos
+  
+      // Limpiar campos
       setAnuncio(null);
       setPersona("");
       setMotivo("");

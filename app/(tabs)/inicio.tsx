@@ -1,18 +1,19 @@
-import { useTask } from "@/contex/TaskContex";
 import { useTheme } from "@/contex/ThemeContext";
+import { RootSate } from "@/store/store";
 import { darkTheme, lightTheme } from "@/styles/themes";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { FlatList, TouchableOpacity, View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
 
 export default function Inicio() {
-  const { tasks } = useTask();
+  const anuncios = useSelector((state: RootSate) => state.anuncios.items);
   const router = useRouter();
-  const {theme} = useTheme();
-      const themeStyles = theme === "dark" ? darkTheme : lightTheme;
+  const { theme } = useTheme();
+  const themeStyles = theme === "dark" ? darkTheme : lightTheme;
 
   return (
-    <View style={[themeStyles.addcontainer,styles.container]}>
+    <View style={[themeStyles.addcontainer, styles.container]}>
       {/* Botón de volver */}
       <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
         <Ionicons name="arrow-back-outline" size={24} color="white" />
@@ -22,27 +23,34 @@ export default function Inicio() {
       {/* Encabezado */}
       <View style={styles.header}>
         <Ionicons name="reader-outline" size={32} color="#4A90E2" />
-        <Text style={[themeStyles.text,styles.title]}>Anuncios</Text>
+        <Text style={[themeStyles.text, styles.title]}>Anuncios</Text>
       </View>
 
-      {/* Lista de anuncios (solo título) */}
-      <FlatList
-        data={tasks}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.item}
-            onPress={() => router.push({ pathname: `/tareas/${item.id}`, params: item })}
-          >
-            <Text style={styles.anuncioText}>{item.anuncio}</Text>
-          </TouchableOpacity>
-        )}
-      />
+      {/* Mostrar mensaje si no hay anuncios */}
+      {anuncios.length === 0 ? (
+        <Text style={styles.noAnuncios}>No hay anuncios disponibles.</Text>
+      ) : (
+        <FlatList
+          data={anuncios}
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.item}
+              onPress={() => router.push({ pathname: `/tareas/${item.id}`, params: item })}
+            >
+              <Text style={styles.anuncioText}>{item.anuncio || "Sin título"}</Text>
+              <Text style={styles.detailsText}>Persona: {item.persona || "N/A"}</Text>
+              <Text style={styles.detailsText}>Motivo: {item.motivo || "N/A"}</Text>
+              <Text style={styles.detailsText}>DNI: {item.dni || "N/A"}</Text>
+              <Text style={styles.detailsText}>Vehículo: {item.vehiculo || "N/A"}</Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -75,7 +83,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 26,
     fontWeight: "bold",
-    
     marginLeft: 10,
   },
   item: {
@@ -94,6 +101,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#333",
+    marginBottom: 5,
+  },
+  detailsText: {
+    fontSize: 14,
+    color: "#555",
+  },
+  noAnuncios: {
+    fontSize: 16,
+    textAlign: "center",
+    marginTop: 20,
+    color: "#888",
   },
 });
-
