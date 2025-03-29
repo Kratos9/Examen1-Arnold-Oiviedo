@@ -24,7 +24,7 @@ const AnuncioSlice = createSlice({
   reducers: {
     AddAnuncioItem: (state, action: PayloadAction<Omit<AnuncioItem, "id">>) => {
       const newAnuncio = {
-        id: Date.now(), // Generar un ID único basado en timestamp
+        id: Date.now(), 
         ...action.payload,
       };
       state.items.push(newAnuncio);
